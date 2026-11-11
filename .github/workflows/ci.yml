@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Compile all Python files
+        run: python -m compileall -q .
+      # The eval is the smoke check: it builds the FAISS index (first run
+      # downloads the embedding model) and scores the fixed QA set.
+      # Expected: hit-rate@3 13/13, guardrails 3/3 refused.
+      - name: Run retrieval eval (smoke check)
+        run: python eval_retrieval.py
