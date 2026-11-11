@@ -1,5 +1,7 @@
 # LangChain RAG Agent (Demo)
 
+![CI](https://github.com/rudhrestam/langchain-rag-agent/actions/workflows/ci.yml/badge.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 A retrieval agent built with LangChain over a small set of synthetic operations runbooks: documents are chunked, embedded, and indexed in FAISS; an agent loop calls a `search_runbooks` tool, answers only from what the tool returns, cites the source file for every passage — and refuses when nothing retrieved is close enough.
 
 > ⚠️ **Synthetic documents only.** The runbooks in `docs/` are fictional, written for this demo. No real operational documentation — anyone's — is used.
@@ -60,7 +62,7 @@ python eval_retrieval.py              # hit-rate + guardrail check
 
 ## Tech stack
 
-Python · LangChain (tools, loaders, text splitters, vector stores) · FAISS · MiniLM embeddings (fastembed / sentence-transformers) with scikit-learn TF-IDF fallback
+Python 3.10+ · LangChain (tools, loaders, text splitters, vector stores) · FAISS · MiniLM embeddings (fastembed / sentence-transformers) with scikit-learn TF-IDF fallback
 
 ## What it demonstrates
 
